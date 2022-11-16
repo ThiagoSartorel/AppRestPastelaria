@@ -17,24 +17,19 @@ content %}
     </tr>
   </thead>
   <tbody>
+    {% if result %}
+    {% for row in result[0] %}
     <tr>
-      <th scope="row">1</th>
-      <td>Thiago</td>
-      <td>08860899923</td>
-      <td>144865</td>
-      <td>(49) 9 9918-4624</td>
-      <td>ADM</td>
+      <th scope="row">{{ row['id_funcionario'] }}</th>
+      <td>{{ row['nome'] }}</td>
+      <td>{{ row['cpf'] }}</td>
+      <td>{{ row['matricula'] }}</td>
+      <td>{{ row['telefone'] }}</td>
+      <td>{{ row['grupo'] }}</td>
       <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Carlos</td>
-      <td>12345678987</td>
-      <td>144882</td>
-      <td>(49) 9 3324-4622</td>
-      <td>ADM</td>
-      <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
-    </tr>
+    {% endfor %}
+    {% endif %}
   </tbody>
 </table>
 {% endblock %}
