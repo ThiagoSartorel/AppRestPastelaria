@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import requests
 from funcoes import Funcoes
-
+from mod_login.login import validaSessao
 
 bp_produto = Blueprint('produto', __name__, url_prefix="/produto", template_folder='templates')
 
@@ -24,6 +24,7 @@ def formListaProduto():
         return render_template('formListaProduto.html', erro=e)
 
 @bp_produto.route('/form-produto', methods=['GET', 'POST'])
+@validaSessao
 def formProduto():
     return render_template('formProduto.html'), 200
 
@@ -46,6 +47,7 @@ def insert():
         return render_template('formListaProduto.html', msgErro=e)
 
 @bp_produto.route("/form-edit-produto", methods=['POST'])
+@validaSessao
 def formEditProduto():
     try:
         # ID enviado via FORM
